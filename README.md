@@ -28,7 +28,10 @@ Signs are recognised by camera and shown/spoken as text. Speech is converted to 
 - Raspberry Pi 4 hardware build
 
 ## How to run (Python 3.10-3.12)
+
+```
 pip install mediapipe==0.10.14 opencv-python scikit-learn pandas joblib
 python software/collect_sequences.py
 python software/train_sequences.py
 python software/predict_press_to_sign.py
+```
