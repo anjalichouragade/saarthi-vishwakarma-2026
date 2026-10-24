@@ -26,6 +26,33 @@ def extract_features(results):
     left = _hand_features(results.left_hand_landmarks, centre, scale)
     right = _hand_features(results.right_hand_landmarks, centre, scale)
     return np.concatenate([left, right, head])
-def sequence_features(seq):
+
+
+def canonical(seq):
+    """Make hand slots independent of MediaPipe's left/right label."""
     seq = np.asarray(seq)
-    return np.concatenate([seq.flatten(), seq.std(axis=0), seq[-1] - seq[0]])
+    L, R, head = seq[:, :65], seq[:, 65:130], seq[:, 130:]
+    l_on = np.abs(L[:, :63]).sum(axis=1) > 0
+    r_on = np.abs(R[:, :63]).sum(axis=1) > 0
+    A, B = np.zeros_like(L), np.zeros_like(R)
+    for i in range(len(seq)):
+        if l_on[i] and r_on[i]:
+            if L[i, 63] <= R[i, 63]:      # smaller x first
+                A[i], B[i] = L[i], R[i]
+            else:
+                A[i], B[i] = R[i], L[i]
+        elif l_on[i]:
+            A[i] = L[i]
+        elif r_on[i]:
+            A[i] = R[i]
+    return np.concatenate([A, B, head], axis=1)
+
+
+def sequence_features(seq):
+    seq = canonical(seq)
+    wrist_gap = seq[:, 63:65] - seq[:, 128:130]
+    a_on = (np.abs(seq[:, :63]).sum(axis=1) > 0).astype(float)
+    b_on = (np.abs(seq[:, 65:128]).sum(axis=1) > 0).astype(float)
+    motion = np.abs(np.diff(seq, axis=0)).mean(axis=0)
+    extra = np.concatenate([wrist_gap.flatten(), a_on, b_on])
+    return np.concatenate([seq.flatten(), seq.std(axis=0), seq[-1] - seq[0], motion, extra])
