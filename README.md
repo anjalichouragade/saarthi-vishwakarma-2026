@@ -6,7 +6,7 @@ Signs are recognised by camera and shown/spoken as text. Speech is converted to 
 - **Application ID:** VK26-IITI-AS-0110
 - **Competition:** Vishwakarma Awards 2026, Stage 2 (Design Specification)
 - **Sub-theme:** Augmentative & Alternative Communication (AAC) Hardware
-- **Team:**  Anjali Chouragade ,Niharka Sharma , Nivedita Karthane, Shivani Mujbaile 
+- **Team:**  Anjali Chouragade ,Niharka Sharma , Nivedita Kathane, Shivani Mujbaile 
 - **College name:**   GHRCE , NAGPUR
   
 ## Folders
