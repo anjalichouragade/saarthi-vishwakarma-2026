@@ -3,7 +3,7 @@
 A portable, offline two-way communication device for Indian Sign Language (ISL) users.
 Signs are recognised by camera and shown/spoken as text. Speech is converted to text on screen.
 
-- **Application ID:** VK26-IITI-AS-0110
+- **Application ID:** VSK26-IITI-AS-0110
 - **Competition:** Vishwakarma Awards 2026, Stage 2 (Design Specification)
 - **Sub-theme:** Augmentative & Alternative Communication (AAC) Hardware
 - **Team:** Anjali Chouragade, Niharika Sharma, Nivedita Kathane, Shivani Mujbaile
