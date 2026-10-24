@@ -73,6 +73,9 @@ with mp_holistic.Holistic(min_detection_confidence=0.5,
             text, colour = "Waiting for sign...", (200, 200, 200)
 
         cv2.putText(display, text, (10, 45), cv2.FONT_HERSHEY_SIMPLEX, 1.2, colour, 3)
+        status = f"L:{'Y' if results.left_hand_landmarks else '-'}  R:{'Y' if results.right_hand_landmarks else '-'}"
+        cv2.putText(display, status, (10, display.shape[0] - 15),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
         cv2.imshow("SAARTHI - live sign recognition", display)
         if cv2.waitKey(1) & 0xFF == ord("q"):
             break
